@@ -1,0 +1,2 @@
+# QueueObserverAutoScalingConfigs
+QueueObserver の AutoScaling 設定を行うスクリプト
