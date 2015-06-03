@@ -1,0 +1,3 @@
+[submodule "src/Library/TripleI.ServerConfigs"]
+	path = src/Library/TripleI.ServerConfigs
+	url = https://github.com/triple-i/TripleI.ServerConfigs.git
