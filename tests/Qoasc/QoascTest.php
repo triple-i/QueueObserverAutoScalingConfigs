@@ -105,6 +105,20 @@ class QoascTest extends MockTestCase
             ->method('describeLaunchConfigurations')
             ->will($this->returnValue($configs));
 
+        $group_results = [[
+            'MinSize' => 1,
+            'MaxSize' => 1
+        ]];
+
+        $groups = $this->getGuzzleModelMock();
+        $groups->expects($this->any())
+            ->method('get')
+            ->will($this->returnValue($group_results));
+
+        $this->as_client->expects($this->any())
+            ->method('describeAutoScalingGroups')
+            ->will($this->returnValue($groups));
+
         $this->qoasc->setEc2Client($this->ec2_client);
         $this->qoasc->setAutoScalingClient($this->as_client);
         $result = $this->qoasc->execute();

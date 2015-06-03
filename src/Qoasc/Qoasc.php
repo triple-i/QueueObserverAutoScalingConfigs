@@ -173,11 +173,15 @@ class Qoasc
      **/
     private function _updateAutoScalingGroup ($config_name)
     {
+        $groups = $this->as_client->describeAutoScalingGroups([
+            'AutoScalingGroupNames' => ['QueueObserverAutoScalingGroup']
+        ]);
+
         $this->as_client->UpdateAutoScalingGroup([
             'AutoScalingGroupName' => 'QueueObserverAutoScalingGroup',
             'LaunchConfigurationName' => $config_name,
-            'MinSize' => 0,
-            'MaxSize' => 0,
+            'MinSize' => $groups->get('AutoScalingGroups')[0]['MinSize'],
+            'MaxSize' => $groups->get('AutoScalingGroups')[0]['MaxSize'],
             'AvailabilityZones' => [\Aws\Common\Enum\Region::AP_NORTHEAST_1.'a'],
         ]);
     }

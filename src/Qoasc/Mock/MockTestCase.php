@@ -88,7 +88,8 @@ abstract class MockTestCase extends \PHPUnit_Framework_TestCase
         $arguments = $this->_getConstructArguments();
         $methods   = array_merge($this->methods, [
             'createLaunchConfiguration', 'describeLaunchConfigurations',
-            'updateAutoScalingGroup', 'putScheduledUpdateGroupAction'
+            'describeAutoScalingGroups', 'updateAutoScalingGroup',
+            'putScheduledUpdateGroupAction'
         ]);
 
         return $this->getMock('Aws\AutoScaling\AutoScalingClient', $methods, $arguments);
